@@ -1,0 +1,81 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.banner{
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.banner .slider{
+    position: absolute;
+    width: 200px;
+    height: 250px;
+    top: 10%;
+    left: calc(50% - 100px);
+    transform-style: preserve-3d;
+    transform: perspective(1400px) rotateX(-15deg);
+}
+.banner .slider .item{
+    position: absolute;
+    inset: 0 0 0 0;
+    transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(550px);
+}
+.banner .slider .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all .5s linear;
+    border-radius: 10px;
+}
+.item::after{
+    content: "";
+    height: 100%;
+    width: 100%;
+    /* background-color: blue; */
+    background-image: url(../media/img1-removebg-preview.png);
+    position: absolute;
+    border-radius: 10px;
+    inset: 0 0 0 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+
+.item:hover .wrapper{
+    opacity: .8;
+    transform: perspective(800px) rotateX(30deg);
+}
+.item:hover::after {
+    opacity: 1;
+    transform: perspective(800px) translate3d(0%, -10%, -100px);
+    animation: rotate 5s linear infinite 0.8s;
+}
+
+@keyframes rotate {
+    0%{
+        transform: perspective(800px) translate3d(0%, -10%, -100px) rotateY(0deg) rotateX(0deg);
+    }
+    25%{
+        transform: perspective(800px) translate3d(0%, -10%, -100px) rotateY(50deg) rotateX(0deg);
+    }
+    50%{
+        transform: perspective(800px) translate3d(0%, -10%, -100px) rotateY(0deg) rotateX(0deg);
+    }
+    75%{
+        transform: perspective(800px) translate3d(0%, -10%, -100px) rotateY(0deg) rotateX(50deg);
+    }
+    100%{
+        transform: perspective(800px) translate3d(0%, -10%, -100px) rotateY(0deg) rotateX(0deg);
+    }
+
+    
+}

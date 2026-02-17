@@ -11,16 +11,38 @@
     overflow: hidden;
     position: relative;
 }
+@property --angle{
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+    animation: slide 15s linear infinite;
+}
 
 .banner .slider{
     position: absolute;
-    width: 200px;
-    height: 250px;
-    top: 10%;
+    width: 180px;
+    height: 220px;
+    top: 20%;
     left: calc(50% - 100px);
     transform-style: preserve-3d;
-    transform: perspective(1400px) rotateX(-15deg);
+    transform: perspective(1400px) rotateX(-15deg) rotateY(var(--angle));
+    animation: slide 15s linear infinite;
 }
+.slider:hover{
+    animation-play-state: paused;
+}
+
+@keyframes slide {
+    form{
+        /* transform: perspective(1400px) rotateX(-15deg) rotateY(0deg); */
+        --angle: 0deg;
+    }
+    to{
+        /* transform: perspective(1400px) rotateX(-15deg) rotateY(360deg); */
+        --angle: 360deg;
+    }
+}
+
 .banner .slider .item{
     position: absolute;
     inset: 0 0 0 0;
@@ -32,7 +54,36 @@
     object-fit: cover;
     transition: all .5s linear;
     border-radius: 10px;
+    
 }
+/* .item::before{
+    content: "AK-4k this is the one of the best gun in the whole aramy";
+    position: absolute;
+    bottom: 10%;
+    text-shadow: 20px 20px 20px blue;
+    opacity: 0;
+    transition: all .5s linear;
+    width: 40%;
+    color: white;
+    background-color: black;
+    
+
+
+} */
+
+.gun-name{
+    position: absolute;
+    width: 80px;
+    bottom: 20%;
+    color: white;
+    font-weight: bolder;
+    opacity: 0;
+    transition: all .5s linear;
+}
+.gun-name p {
+    font-size: 12px;
+}
+
 .item::after{
     content: "";
     height: 100%;
@@ -48,10 +99,16 @@
     opacity: 0;
     transition: opacity 0.4s ease, transform 0.4s ease;
 }
-
+.item:nth-child(2)::after{
+    background-image: url(../media/img2-removebg-preview.png);
+}
+.item:hover .gun-name{
+    transform: perspective(900px) translate3d(0%, -25%, -100px);
+    opacity: 1;
+    font-weight: bolder;
+}
 
 .item:hover .wrapper{
-    opacity: .8;
     transform: perspective(800px) rotateX(30deg);
 }
 .item:hover::after {

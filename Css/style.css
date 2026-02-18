@@ -30,7 +30,7 @@
     top: 20%;
     left: calc(50% - 100px);
     transform-style: preserve-3d;
-    transform: perspective(1400px) rotateX(-10deg) rotateY(var(--angle));
+    transform: perspective(1400px) rotateX(-15deg) rotateY(var(--angle));
     animation: slide 25s linear infinite;
 }
 .slider:hover{
@@ -164,4 +164,11 @@
     }
 
     
+}
+
+.img-center{
+    position: absolute;
+    text-align: center;
+    top: 30%;
+    left: calc(50% - 140px);
 }
